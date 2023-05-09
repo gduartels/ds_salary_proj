@@ -10,7 +10,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import mean_absolute_error
 import pickle
 
-df = pd.read_csv('eda_data.csv')
+df = pd.read_csv('data/eda_data.csv')
 
 # choose relevant columns 
 df.columns
@@ -84,9 +84,9 @@ mean_absolute_error(y_test,tpred_rf)
 mean_absolute_error(y_test,(tpred_lm+tpred_rf)/2)
 
 pickl = {'model': gs.best_estimator_}
-pickle.dump( pickl, open( 'model_file' + ".p", "wb" ) )
+pickle.dump( pickl, open( 'FlaskAPI/models/model_file' + ".p", "wb" ) )
 
-file_name = "model_file.p"
+file_name = "FlaskAPI/models/model_file.p"
 with open(file_name, 'rb') as pickled:
     data = pickle.load(pickled)
     model = data['model']
